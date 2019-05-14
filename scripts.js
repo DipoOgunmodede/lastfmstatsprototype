@@ -23,8 +23,8 @@ new Vue({
         data: null
     },
     mounted() {
-        axios.get('https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200').then(response => (this.data = response.data));
-
+         axios.get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200").then(response => this.data = response.data.topartists).catch(error => console.log(error));
+console.log(this.data);
     }
 })
 
