@@ -31,7 +31,7 @@ new Vue({
       .then(response => (this.myArtists = response.data.topartists.artist))
       .catch(error => console.log(error));
 
-  }
+  },
 })
 
 // function registerSW() {
