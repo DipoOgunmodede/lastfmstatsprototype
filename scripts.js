@@ -26,12 +26,23 @@ new Vue({
     }
   },
   mounted() {
-    axios
-      .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200")
-      .then(response => (this.myArtists = response.data.topartists.artist))
-      .catch(error => console.log(error));
-
+    console.log('beepgig')
   },
+  methods: {
+    getTopArtists: function(e) {
+      console.log('beepbepep')
+      axios
+        .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200")
+        .then(response => (this.myArtists = response.data.topartists.artist))
+        .catch(error => console.log(error));
+
+    }
+  },
+  computed: {
+    backgroundImage: function() {
+      return (artist) => artist.image.find(size => size.size === 'large')['#text']
+    }
+  }
 })
 
 // function registerSW() {

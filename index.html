@@ -9,12 +9,19 @@
 
 <body>
 	<div id="LastFM">
-		<p>Dipo's top artists</p>
-		<ul class="artistList">
-			<li v-for="(artist, index) in myArtists" v-bind:key="artist.rank">
-	<!-- 	<p>{{artist.image.find(size => size.size === 'large')}}</p> -->
-				<span v-html="artist.name"></span></div>
+		<button v-on:click="getTopArtists()">Get Top Artists</button>
+		<template v-if="myArtists">
+			<div>
+				<p>Dipo's top artists</p>
+				<ul class="artistList">
+					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
+						<img :src="backgroundImage(artist)">
+						<span v-html="artist.name"></span>
+					</li>
+			</div>
+		</template>
 		</ul>
+	</div>
 	</div>
 </body>
 
@@ -23,9 +30,9 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="./scripts.js" type="text/javascript"></script>
-
 <style type="text/css">
-	li{
-		list-style-type: none;
-	}
+li {
+	list-style-type: none;
+}
+
 </style>
