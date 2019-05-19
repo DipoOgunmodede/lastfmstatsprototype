@@ -1,52 +1,42 @@
-window.addEventListener('load', () => {
-  // registerSW();
+// window.addEventListener('load', () => {
+//     // registerSW();
 
-})
+// })
 
-$(document).ready(function() {
-  var apiUrl = 'https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200';
-  var topArtists = [];
-  $.getJSON(apiUrl, function(data) {
-    $.each(data.topartists.artist, function(i, item) {
-      currArtist = "<div class='artist p" + (i + 1) + "'> \
-          <div class='pos'>" + (i + 1) + "</div> \
-          <div class='nm'>" + data.topartists.artist[i].name + "</div> \
-          <div class='pc'>" + data.topartists.artist[i].playcount + "</div> \
-          </div>"
-      $("#output").append(currArtist)
-    });
-  });
-});
 
 new Vue({
-  el: '#LastFM',
-  data() {
-    return {
-      myArtists: null
-    }
-  },
-  mounted() {
-    console.log('beepgig')
-  },
-  methods: {
-    getTopArtists: function(e) {
-      console.log('beepbepep')
-      axios
-        .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200")
-        .then(response => (this.myArtists = response.data.topartists.artist))
-        .catch(error => console.log(error));
+    el: '#LastFM',
+    data() {
+        return {
+            myArtists: null
+        }
+    },
+    mounted() {
+        getTopArtists: {
+            if (localStorage.cachedArtists) {
+                this.myArtists = JSON.parse(localStorage.getItem(cachedArtists) || [] )
+            }
 
+        }
+    },
+    methods: {
+        updateTopArtists: function(e) {
+            axios
+                .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200")
+                .then(response => this.myArtists = response.data.topartists.artist)
+                .then(response => localStorage.setItem('cachedArtists', JSON.stringify(this.myArtists)))
+                .catch(function(error) {
+                    // if (error.request) {
+                    //     this.myArtists = JSON.parse(localStorage.getItem(cachedArtists) || [])
+                    // }
+                });
+        }
+    },
+    computed: {
+        backgroundImage: function() {
+            return (artist) => artist.image.find(size => size.size === 'large')['#text']
+        }
     }
-  },
-  computed: {
-    backgroundImage: function() {
-      return (artist) => artist.image.find(size => size.size === 'large')['#text']
-    }
-  }
 })
 
-// function registerSW() {
-//     if ('serviceWorker' in navigator) {
-//         navigator.serviceWorker.register('/sw.js');
-//     }
-// }
+//localStorage.clear();
