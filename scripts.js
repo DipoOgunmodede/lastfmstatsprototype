@@ -8,13 +8,15 @@ new Vue({
     el: '#LastFM',
     data() {
         return {
-            myArtists: null
+            myArtists: null,
+            cachedTimeStamp: {}
         }
     },
     mounted() {
         getTopArtists: {
             if (localStorage.cachedArtists) {
-                this.myArtists = JSON.parse(localStorage.getItem(cachedArtists) || [] )
+                this.myArtists = JSON.parse(localStorage.getItem('cachedArtists') || []);
+                this.cachedTimeStamp = JSON.parse(localStorage.getItem('cachedTimestamp') || [])
             }
 
         }
@@ -25,7 +27,11 @@ new Vue({
                 .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getTopArtists&user=El_Mayo&period=overall&limit=200")
                 .then(response => this.myArtists = response.data.topartists.artist)
                 .then(response => localStorage.setItem('cachedArtists', JSON.stringify(this.myArtists)))
+                .then(response => this.cachedTimeStamp = { time: new Date().toLocaleString() }).then(response => localStorage.setItem('cachedTimestamp', JSON.stringify(this.cachedTimeStamp)))
                 .catch(function(error) {
+
+
+
                     // if (error.request) {
                     //     this.myArtists = JSON.parse(localStorage.getItem(cachedArtists) || [])
                     // }

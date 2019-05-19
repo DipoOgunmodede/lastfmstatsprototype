@@ -9,10 +9,10 @@
 
 <body>
 	<div id="LastFM">
-		<button v-on:click="updateTopArtists()">Get Dipo's Top Artists</button>
+		<button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button>
 		<template v-if="myArtists">
 			<div>
-				<p>Dipo's top artists <span>Cached on [datetime of last get request]</span></p>
+				<p>Dipo's top artists <span>Cached on {{cachedTimeStamp.time}}</span></p>
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
 						<!-- <img :src="backgroundImage(artist)"> -->
