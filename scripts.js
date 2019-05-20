@@ -9,7 +9,8 @@ new Vue({
     data() {
         return {
             myArtists: null,
-            cachedTimeStamp: {}
+            cachedTimeStamp: {},
+            errorState: false
         }
     },
     mounted() {
@@ -29,12 +30,10 @@ new Vue({
                 .then(response => localStorage.setItem('cachedArtists', JSON.stringify(this.myArtists)))
                 .then(response => this.cachedTimeStamp = { time: new Date().toLocaleString() }).then(response => localStorage.setItem('cachedTimestamp', JSON.stringify(this.cachedTimeStamp)))
                 .catch(function(error) {
+                    console.log(error)
+ 
+                        this.errorState = true
 
-
-
-                    // if (error.request) {
-                    //     this.myArtists = JSON.parse(localStorage.getItem(cachedArtists) || [])
-                    // }
                 });
         }
     },
