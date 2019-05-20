@@ -10,12 +10,15 @@ new Vue({
         return {
             myArtists: null,
             cachedTimeStamp: {},
-            errorState: false
+            errorState: false,
+        cachedArtists: null
+
         }
     },
     mounted() {
         getTopArtists: {
             if (localStorage.cachedArtists) {
+              this.cachedArtists = true
                 this.myArtists = JSON.parse(localStorage.getItem('cachedArtists') || []);
                 this.cachedTimeStamp = JSON.parse(localStorage.getItem('cachedTimestamp') || [])
             }
@@ -29,11 +32,9 @@ new Vue({
                 .then(response => this.myArtists = response.data.topartists.artist)
                 .then(response => localStorage.setItem('cachedArtists', JSON.stringify(this.myArtists)))
                 .then(response => this.cachedTimeStamp = { time: new Date().toLocaleString() }).then(response => localStorage.setItem('cachedTimestamp', JSON.stringify(this.cachedTimeStamp)))
-                .catch(function(error) {
-                    console.log(error)
- 
-                        this.errorState = true
-
+                .catch((error) => {
+                  this.errorState= true;
+                    console.log(error.config)
                 });
         }
     },
