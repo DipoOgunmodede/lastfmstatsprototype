@@ -4,7 +4,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="">
 	<link rel="manifest" href="./manifest.webmanifest">
-	<title></title>
+	<title>Dipo's Progressive Web App</title>
 </head>
 
 <body>
@@ -12,7 +12,8 @@
 		<button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button>
 		<template v-if="myArtists">
 			<div>
-				<p>Dipo's top artists <span>Cached on {{cachedTimeStamp.time}}</span></p>
+				<p>Dipo's top artists</p>
+				<p>Cached on {{cachedTimeStamp.time}}</p>
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
 						<!-- <img :src="backgroundImage(artist)"> -->
