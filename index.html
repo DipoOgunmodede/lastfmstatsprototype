@@ -14,7 +14,8 @@
 			<div>
 				<p>Dipo's top artists</p>
 				<p v-if="errorState">There has been an error.
-				<!-- <span v-if="cachedArtists">Here is a previously cached list</span> --></p>
+					<!-- <span v-if="cachedArtists">Here is a previously cached list</span> -->
+				</p>
 				<p v-if="cachedTimeStamp">Retrieved on {{cachedTimeStamp.time}}</p>
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
@@ -29,8 +30,8 @@
 </body>
 
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="jquery.js"></script>
+<script src="axios.js"></script>
 <script src="vue.js"></script>
 <script src="scripts.js" type="text/javascript"></script>
 <style type="text/css">
