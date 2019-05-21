@@ -10,12 +10,12 @@
 <body>
 	<div id="LastFM">
 		<button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button>
+		<p v-if="errorState">There has been an error.
+			<!-- <span v-if="cachedArtists">Here is a previously cached list</span> -->
+		</p>
 		<template v-if="myArtists">
 			<div>
 				<p>Dipo's top artists</p>
-				<p v-if="errorState">There has been an error.
-					<!-- <span v-if="cachedArtists">Here is a previously cached list</span> -->
-				</p>
 				<p v-if="cachedTimeStamp">Retrieved on {{cachedTimeStamp.time}}</p>
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
