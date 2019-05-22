@@ -35,8 +35,8 @@ new Vue({
                     }
                 });
         },
+
         updateRecentTracks: function(e) {
-            //setInterval is NOT a good idea here
             axios
                 .get("https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getrecenttracks&user=El_Mayo&period=overall&limit=100")
                 .then(response => this.recentTracks = response.data.recenttracks.track)
@@ -52,14 +52,12 @@ new Vue({
 
                     }
                 });
-
-
         },
         continuousMode: function(e) {
-            setInterval(function() {
-                updateRecentTracks();
-                updateTopArtists();
-            }, 5000); //work on getting this as a modifier to other methods
+            this.updateRecentTracks(e);
+            console.log("continuousmode ran")
+
+            setInterval(this.updateRecentTracks, 30000);
         }
     },
     computed: {
