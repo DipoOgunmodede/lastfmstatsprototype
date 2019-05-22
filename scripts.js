@@ -13,7 +13,8 @@ new Vue({
             cachedTopArtistsTimeStamp: {},
             cachedRecentTracksTimeStamp: {},
             errorState: false,
-            cachedArtists: null
+            cachedArtists: null,
+            autoMode: false
 
         }
     },
@@ -54,10 +55,12 @@ new Vue({
                 });
         },
         continuousMode: function(e) {
+          if(this.autoMode){
             this.updateRecentTracks(e);
-            console.log("continuousmode ran")
-
-            setInterval(this.updateRecentTracks, 30000);
+              setInterval(this.updateRecentTracks, 1000);
+          }else if (!this.autoMode) {
+            return //this unfortunately isn't working. it's not stopping the interval once it begins
+          }
         }
     },
     computed: {
