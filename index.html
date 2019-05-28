@@ -2,43 +2,46 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="">
-    <link rel="manifest" href="./manifest.webmanifest">
-    <title>Dipo's Progressive Web App</title>
+	<link rel="stylesheet" type="text/css" href="">
+	<link rel="manifest" href="./manifest.webmanifest">
+	<title>Dipo's Progressive Web App</title>
 </head>
 
 <body>
-    <main id="LastFM">
-        <button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button>
-        <button v-on:click="continuousMode
-()">Update Dipo's Most Recent Tracks</button><label>Refresh automatically<input v-model="autoMode" type="checkbox" name=""></label>
-        <div class="topArtists">
-            <p v-if="errorState">There has been an error. <span v-if="cachedArtists||cachedRecentTracks">Here is a previously cached list</span>
-            </p>
-            <template v-if="myArtists">
-                <p>Dipo's top artists</p>
-                <p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedTopArtistsTimeStamp.time}}</p>
-                <ul class="artistList">
-                    <li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
-                        <!-- <img :src="backgroundImage(artist)"> -->
-                        <span>{{artist.name}} - {{artist.playcount}} plays</span>
-                    </li>
-                </ul>
-            </template>
-        </div>
-        <div class="mostRecentTracks">
-            <template v-if="recentTracks">
-                <p>Dipo's most recent tracks (updates automatically)</p>
-                <p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
-                <ul class="mostRecentTracksList">
-                    <li v-for="(track, index) in recentTracks" :key="`track-${index}`" v-bind:class="'artist-' + index">
-                        <span>{{track.artist['#text']}} - {{track.name}}</span>
-                    </li>
-                </ul>
-            </template>
-        </div>
-    </main>
-    </div>
+	<main id="LastFM">
+		<button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button>
+		<button v-on:click="updateRecentTracks
+()">Update Dipo's Most Recent Tracks</button>
+		<label>Refresh automatically
+			<input v-model="autoMode" type="checkbox"></label>
+		{{autoMode}}
+		<div class="topArtists">
+			<p v-if="errorState">There has been an error. <span v-if="cachedArtists||cachedRecentTracks">Here is a previously cached list</span>
+			</p>
+			<template v-if="myArtists">
+				<p>Dipo's top artists</p>
+				<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedTopArtistsTimeStamp.time}}</p>
+				<ul class="artistList">
+					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
+						<!-- <img :src="backgroundImage(artist)"> -->
+						<span>{{artist.name}} - {{artist.playcount}} plays</span>
+					</li>
+				</ul>
+			</template>
+		</div>
+		<div class="mostRecentTracks">
+			<template v-if="recentTracks">
+				<p>Dipo's most recent tracks (updates automatically)</p>
+				<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
+				<ul class="mostRecentTracksList">
+					<li v-for="(track, index) in recentTracks" :key="`track-${index}`" v-bind:class="'artist-' + index">
+						<span>{{track.artist['#text']}} - {{track.name}}</span>
+					</li>
+				</ul>
+			</template>
+		</div>
+	</main>
+	</div>
 </body>
 
 </html>
@@ -48,6 +51,7 @@
 <script src="scripts.js" type="text/javascript"></script>
 <style type="text/css">
 li {
-    list-style-type: none;
+	list-style-type: none;
 }
+
 </style>

@@ -55,18 +55,25 @@ new Vue({
                 });
         },
         continuousMode: function(e) {
-          if(this.autoMode){
-            this.updateRecentTracks(e);
-              setInterval(this.updateRecentTracks, 1000);
-          }else if (!this.autoMode) {
-            return //this unfortunately isn't working. it's not stopping the interval once it begins
-          }
+            if (this.autoMode) {
+                console.log("running");
+
+            } else {
+                console.log("not running")
+            }
+
         }
+
     },
     computed: {
         backgroundImage: function() {
             return (artist) => artist.image.find(size => size.size === 'large')['#text']
-        }
+        },
+
+    },
+    watch: {
+
+
     }
 })
 
