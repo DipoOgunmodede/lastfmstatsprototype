@@ -54,15 +54,7 @@ new Vue({
                     }
                 });
         },
-        continuousMode: function(e) {
-            if (this.autoMode) {
-                console.log("running");
 
-            } else {
-                console.log("not running")
-            }
-
-        }
 
     },
     computed: {
@@ -72,7 +64,15 @@ new Vue({
 
     },
     watch: {
+        autoMode: function(e) {
+            if (this.autoMode) {
+                setInterval(updateRecentTracks, 1000)
 
+            } else {
+                clearInterval(updateRecentTracks, 1000)
+            }
+
+        }
 
     }
 })
