@@ -24,7 +24,7 @@
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
 						<!-- <img :src="backgroundImage(artist)"> -->
-						<span>{{artist.name}} - {{artist.playcount}} plays</span>
+						<span v-bind:class="{ 'disabled': artist['@attr']['nowplaying'] }">{{artist.name}} - {{artist.playcount}} plays</span>
 					</li>
 				</ul>
 			</template>

@@ -14,7 +14,8 @@ new Vue({
             cachedRecentTracksTimeStamp: {},
             errorState: false,
             cachedArtists: null,
-            autoMode: false
+            autoMode: false,
+            nowPlaying: false
 
         }
     },
@@ -55,7 +56,6 @@ new Vue({
                 });
         },
 
-
     },
     computed: {
         backgroundImage: function() {
@@ -66,12 +66,17 @@ new Vue({
     watch: {
         autoMode: function(e) {
             if (this.autoMode) {
-                setInterval(updateRecentTracks, 1000)
+                setInterval(this.updateRecentTracks, 5000)
 
             } else {
-                clearInterval(updateRecentTracks, 1000)
+                clearInterval(this.updateRecentTracks, 1000)
             }
 
+        },
+        nowPlaying: function(e){
+if(artist['@attr'].nowplaying){
+  this.nowPlaying == !this.nowPlaying;
+}
         }
 
     }
