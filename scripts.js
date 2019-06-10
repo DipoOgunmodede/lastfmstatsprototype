@@ -56,30 +56,46 @@ new Vue({
                 });
         },
 
+
     },
     computed: {
         backgroundImage: function() {
             return (artist) => artist.image.find(size => size.size === 'large')['#text']
         },
+                getTimeSincePlay: function(e){
+          let now = getTime();
+          playTime = track.date.uts;
+          timeSincePlay = now - playTime; 
+        },
+        currentTime: function() {
+         new Date().getTime()
+           console.log(new Date().getTime())
+        }
 
     },
     watch: {
         autoMode: function(e) {
             if (this.autoMode) {
-                setInterval(this.updateRecentTracks, 5000)
+                setInterval(this.updateRecentTracks, 5000);
 
             } else {
                 clearInterval(this.updateRecentTracks, 1000)
             }
 
-        },
-        nowPlaying: function(e){
-if(artist['@attr'].nowplaying){
-  this.nowPlaying == !this.nowPlaying;
-}
+        // },
+        // nowPlaying: function(e) {
+
+        //   let nowPlayingIsTrue = this.recentTracks.filter(track => 'track.@attr.nowplaying' == "true" )
+     
+        //     if (nowPlayingIsTrue) {
+        //         console.log("something is playing");
+        //         this.nowPlaying == "true";
+        //     }
+        //     else{
+        //       console.log("Nothing is playing");
+        // this.nowPlaying = "false"
+        //     }
         }
 
     }
 })
-
-//localStorage.clear();

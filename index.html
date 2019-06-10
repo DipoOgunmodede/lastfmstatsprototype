@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="manifest" href="./manifest.webmanifest">
 	<title>Dipo's Progressive Web App</title>
 </head>
@@ -24,18 +24,21 @@
 				<ul class="artistList">
 					<li v-for="(artist, index) in myArtists" :key="`artist-${index}`" v-bind:class="'artist-' + index">
 						<!-- <img :src="backgroundImage(artist)"> -->
-						<span v-bind:class="{ 'disabled': artist['@attr']['nowplaying'] }">{{artist.name}} - {{artist.playcount}} plays</span>
+						<span>{{artist.name}} - {{artist.playcount}} plays</span>
+
 					</li>
 				</ul>
 			</template>
 		</div>
 		<div class="mostRecentTracks">
 			<template v-if="recentTracks">
-				<p>Dipo's most recent tracks (updates automatically)</p>
+				<p>Dipo's most recent tracks <span v-if="autoMode">(updates automatically)</span></p>
 				<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
 				<ul class="mostRecentTracksList">
-					<li v-for="(track, index) in recentTracks" :key="`track-${index}`" v-bind:class="'artist-' + index">
-						<span>{{track.artist['#text']}} - {{track.name}}</span>
+					<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" v-bind:class="'track-' + index">
+						<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">{{track.artist['#text']}} - {{track.name}}</span>
+						
+
 					</li>
 				</ul>
 			</template>
