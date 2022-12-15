@@ -37,7 +37,12 @@
 					<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
 					<ul class="mostRecentTracksList">
 						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" v-bind:class="'track-' + index">
-							<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">{{track.artist['#text']}} - {{track.name}} {{track['@attr'] && track['@attr'].nowplaying ? '(Dipo is listening to this right now)' : ''}}
+							<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">
+								{{track.artist['#text']}} - {{track.name}} {{track['@attr'] && track['@attr'].nowplaying ?
+								'(Dipo is listening to this right now)' : ''}} 
+
+								{{track.date && track.date.uts ? 
+								track.date.uts : ''}}
 							</span>
 
 						</li>
