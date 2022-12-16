@@ -5,14 +5,14 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<title>Dipo Ogunmodede Last FM prototype</title>
 	</head>
-
 	<body>
 		<main id="LastFM">
 			<!-- <button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button> -->
+			<div>This is a very ugly application that will show you every song I've listened to today.</div>
 			<button v-on:click="updateRecentTracks
-()">Update Dipo's Most Recent Tracks</button>
-			<button v-on:click="getPreviousPage()">Prev</button>
-			<button v-on:click="getNextPage()">Next</button>
+()">Show today's songs</button>
+			<!-- <button v-on:click="getPreviousPage()">Prev</button>
+			<button v-on:click="getNextPage()">Next</button> -->
 			<label>Refresh automatically
 			<input v-model="autoMode" type="checkbox"></label>
 			{{autoMode}}
@@ -38,8 +38,9 @@
 					<ul class="mostRecentTracksList">
 						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" v-bind:class="'track-' + index">
 							<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">
-								{{track.artist['#text']}} - {{track.name}} {{track['@attr'] && track['@attr'].nowplaying ?
-								'(Dipo is listening to this right now)' : ''}} 
+								{{track.artist['#text']}} - {{track.name}}
+								{{track['@attr'] && track['@attr'].nowplaying ?
+								'(Dipo is listening to this right now)' : ''}}
 
 								{{track.date && track.date.uts ? 
 								track.date.uts : ''}}
