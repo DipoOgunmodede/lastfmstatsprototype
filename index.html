@@ -10,12 +10,31 @@
 			<!-- <button v-on:click="updateTopArtists()">Get or Update Dipo's Top Artists</button> -->
 			<div>This is a very ugly application that will show you every song I've listened to today.</div>
 			<button v-on:click="updateRecentTracks
-()">Show today's songs</button>
+()">Request update</button>
 			<!-- <button v-on:click="getPreviousPage()">Prev</button>
 			<button v-on:click="getNextPage()">Next</button> -->
 			<label>Refresh automatically
 			<input v-model="autoMode" type="checkbox"></label>
 			{{autoMode}}
+			<div class="mostRecentTracks">
+				<template v-if="recentTracks">
+					<p>Dipo's most recent tracks <span v-if="autoMode">(updates automatically)</span></p>
+					<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
+					<ul class="mostRecentTracksList">
+						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" v-bind:class="'track-' + index">
+							<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">
+								{{track.artist['#text']}} - {{track.name}}
+								{{track['@attr'] && track['@attr'].nowplaying ?
+								'(Dipo is listening to this right now)' : ''}}
+
+								{{track.date && track.date.uts ? 
+								new Date(track.date.uts * 1000).toLocaleTimeString() : ''}}
+							</span>
+
+						</li>
+					</ul>
+				</template>
+			</div>
 			<div class="topArtists">
 				<p v-if="errorState">There has been an error. <span v-if="cachedArtists||cachedRecentTracks">Here is a previously cached list</span>
 				</p>
@@ -31,25 +50,7 @@
 					</ul>
 				</template>
 			</div>
-			<div class="mostRecentTracks">
-				<template v-if="recentTracks">
-					<p>Dipo's most recent tracks <span v-if="autoMode">(updates automatically)</span></p>
-					<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
-					<ul class="mostRecentTracksList">
-						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" v-bind:class="'track-' + index">
-							<span :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">
-								{{track.artist['#text']}} - {{track.name}}
-								{{track['@attr'] && track['@attr'].nowplaying ?
-								'(Dipo is listening to this right now)' : ''}}
-
-								{{track.date && track.date.uts ? 
-								track.date.uts : ''}}
-							</span>
-
-						</li>
-					</ul>
-				</template>
-			</div>
+			
 		</main>
 	</div>
 </body>
