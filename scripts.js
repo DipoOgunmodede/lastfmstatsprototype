@@ -62,24 +62,6 @@ new Vue({
                     }
                 });
         },
-        // getNextPage() {
-        //     //then update offsetFromToday
-        //     this.offsetFromToday++
-        //     this.updateRecentTracks();
-        // },
-        // getPreviousPage() {
-        //     this.offsetFromToday--
-        //     this.updateRecentTracks();
-        // },
-
-        calculateTimeSinceLastPlayed: function (e) {
-
-            let now = new Date().getTime()
-            let lastPlayed = new Date(e.date.uts).getTime()
-            let timeSinceLastPlayed = now - lastPlayed
-            console.log(timeSinceLastPlayed)
-            return timeSinceLastPlayed
-        }
     },
     computed: {
         backgroundImage: function () {
@@ -114,5 +96,8 @@ new Vue({
 
         }
 
+    },
+    mounted() {
+        this.updateRecentTracks();
     }
 })
