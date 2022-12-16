@@ -10,19 +10,20 @@ new Vue({
             cachedArtists: null,
             autoMode: false,
             nowPlaying: false,
-            currentPage: 1,
+            offsetFromToday: 1,
 
         }
     },
     mounted() { },
     methods: {
         createRecentTracksQueryString: function (e) {
-            let queryString = "https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getrecenttracks&user=El_Mayo&period=overall&limit=100"
-            let page = this.currentPage
-            console.log(page)
+            let queryString = "https://ws.audioscrobbler.com/2.0/?api_key=2c5c5c19e5d21ce9cf86b13712a1bbed&format=json&method=user.getrecenttracks&user=El_Mayo"
+            //get today at midnight and turn it into utc
+            let today = new Date()
+            today.setHours(0, 0, 0, 0)
+            let todayUTC = today.getTime() / 1000
             let limit = 100
-            let offset = (page - 1) * limit
-            queryString += `&page=${page}&limit=${limit}&offset=${offset}`
+            queryString += `&limit=${limit}&from=${todayUTC}`
             return queryString
         },
 
@@ -61,15 +62,15 @@ new Vue({
                     }
                 });
         },
-        getNextPage() {
-            //then update currentpage
-            this.currentPage++
-            this.updateRecentTracks();
-        },
-        getPreviousPage() {
-            this.currentPage--
-            this.updateRecentTracks();
-        },
+        // getNextPage() {
+        //     //then update offsetFromToday
+        //     this.offsetFromToday++
+        //     this.updateRecentTracks();
+        // },
+        // getPreviousPage() {
+        //     this.offsetFromToday--
+        //     this.updateRecentTracks();
+        // },
 
         calculateTimeSinceLastPlayed: function (e) {
 
