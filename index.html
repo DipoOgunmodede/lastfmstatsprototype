@@ -28,7 +28,7 @@
 								'(Dipo is listening to this right now)' : ''}}
 
 								{{track.date && track.date.uts ? 
-								new Date(track.date.uts * 1000).toLocaleTimeString() : ''}}
+								"@" + new Date(track.date.uts * 1000).toLocaleTimeString() : ''}}
 							</span>
 
 						</li>
