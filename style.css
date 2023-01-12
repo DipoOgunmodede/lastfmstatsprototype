@@ -67,8 +67,10 @@ button{
   }
 }
 
-.track + .track {
+.track{
   display: block;
+}
+.track + .track {
   margin: 24px 0;
   color: black;
 }
