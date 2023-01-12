@@ -7,16 +7,16 @@
   animation: pulse 5s infinite;
   padding: 2px;
 }
-body{
+body {
   background-color: #f2f2f2;
   padding: 1rem;
 }
 
-h1{
+h1 {
   font-size: 48px;
 }
 
-input{
+input {
   background-color: #f2f2f2;
   border: none;
   color: black;
@@ -28,8 +28,8 @@ input{
   margin: 4px 2px;
   cursor: pointer;
 }
-button{
-  background-color: #4CAF50;
+button {
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 16px 32px;
@@ -67,9 +67,10 @@ button{
   }
 }
 
-.track{
+.track {
   display: block;
 }
+
 .track + .track {
   margin: 24px 0;
   color: black;
