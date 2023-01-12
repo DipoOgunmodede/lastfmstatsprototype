@@ -21,8 +21,8 @@
 					<p>Dipo's most recent tracks <span v-if="autoMode">(updates automatically)</span></p>
 					<p v-if="cachedTopArtistsTimeStamp">Retrieved on {{cachedRecentTracksTimeStamp.time}}</p>
 					<ul class="mostRecentTracksList">
-						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" >
-							<span class="songTitle" :class="{ playing: track['@attr'] && track['@attr'].nowplaying }">
+						<li v-for="(track, index) in recentTracks" :key="`track-${index}`" class="track" :class="{ playing: track['@attr'] && track['@attr'].nowplaying }" >
+							<span class="songTitle">
 								{{track.artist['#text']}} - {{track.name}}
 								{{track['@attr'] && track['@attr'].nowplaying ?
 								'(Dipo is listening to this right now)' : ''}}
