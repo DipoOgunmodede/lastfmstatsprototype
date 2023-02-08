@@ -10,7 +10,7 @@
 body {
   background-color: #f2f2f2;
   padding: 1rem;
-  font-size: 20px;
+  font-size:1.5rem;
 }
 
 h1 {
@@ -24,7 +24,6 @@ input {
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
@@ -36,7 +35,6 @@ button {
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
@@ -70,9 +68,6 @@ button {
 
 .track {
   display: block;
-}
-.songTitle{
-  display: inline-block;
 }
 
 .track + .track {
